@@ -1,8 +1,8 @@
 [package]
 name = "sherlock-rs"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
-description = "Hunt a username across social networks. A fast, concurrent Rust rewrite of sherlock-project/sherlock."
+description = "Hunt a username across the web. A fast, concurrent Rust rewrite of sherlock-project/sherlock with baseline probing, structured output, and a categorized multi-source catalog."
 license = "MIT"
 repository = "https://github.com/cloudsculptinglabs/sherlock-rs"
 readme = "README.md"
@@ -15,11 +15,14 @@ path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }
-tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
-reqwest = { version = "0.12", default-features = false, features = ["rustls-tls"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "time", "sync"] }
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "gzip", "socks"] }
 futures = "0.3"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+regex = "1"
+indicatif = "0.17"
+rand = "0.8"
 
 [profile.release]
 lto = true
